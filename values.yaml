@@ -1,0 +1,40 @@
+
+metadata:
+  name: my-cool-app
+
+replicas: 3
+
+labels:
+  application: webserver
+
+selector:
+  matchLabels: 
+    type: webserver
+
+
+
+serviceAccount: 
+  create: true
+  annotations: {}
+  name: "webserver-sa"
+
+  
+service:
+  name: webserver-svc
+  type: ClusterIP
+  ports:
+    name: http
+    port: 80
+    targetPort: 80 
+
+
+containers:
+  name: my-cool-container
+  image:
+    repository: httpd
+    tag: "latest"
+  port: 80
+
+
+
+
